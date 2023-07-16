@@ -20,7 +20,10 @@ main ()
   int rate[] =
     { 40, 30, 60, 25, 80, 30, 40, 60, 60, 160, 10, 10, 5, 5, 5, 210, 300, 50,
 50, 80 };
-
+  string nitem[20] =
+    { "Tomato", "Potato", "Brinjal", "Onion", "Ladyfinger", "Bottle gourd",
+"Cabbage", "Carrot", "Beetroot", "Beans", "palak", "meethi", "kothir", "kareepak",
+"pudina", "apple", "pineapple", "water-melon", "Banana", "Grapes" };
 
 beginning:
   queue < pair < int, double >>q;
@@ -169,29 +172,37 @@ cbeginning:
     }
   cout << " If you want to add anything  ";
   cout << " (please enter 1-yes and 0-no):";
+
+  bool revise;
+  cin >> revise;
+  if (revise == true)
+    {
+      cout << "\x1B[2J\x1B[H";
+      goto cbeginning;
+    }
+  cout << "\x1B[2J\x1B[H";
   double total = 0;
+  cout << "\t\t\t\t------Sri venkateswara fruits & vegetables------" << endl;
+  cout << "\t\t\t\t------BILL------" << endl;
+  cout << "Name: " << name << endl;
+  cout << "Item\t\t\t\tQuantity\t\trate/quantity\t\trate" << endl;
   while (!q.empty ())
     {
       int item = q.front ().first;
       double quantity = q.front ().second;
       q.pop ();
+      cout << nitem[item -
+		    1] << "\t\t\t\t" << quantity << "\t\t\t" << rate[item -
+								     1] <<
+	"\t\t\t" << rate[item - 1] * quantity << endl;
 
-      total = rate[item - 1] * quantity;
+      total += rate[item - 1] * quantity;
 
     }
-  bool revise;
-  cin >> revise;
-  if (revise == true)
-    {
-      goto cbeginning;
-    }
-  //print the bill;
-  cout << "Sri venkateswara fruits & vegetables" << endl;
-  cout << "BILL" << endl;
-  cout << name << endl;
 
 
-  cout << "Toatal amount: " << total << endl;
+
+  cout << "Toatal amount:\t\t\t\t\t\t\t\t\t" << total << endl;
   cout << " thank you vist again " << endl;
   return 0;
 
